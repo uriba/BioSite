@@ -2,19 +2,26 @@
 module Handler.Home where
 
 import Import
+import Data.Yaml (decodeFile, Value, (.:), parseMaybe)
+import qualified Data.HashMap.Strict as HM
 
--- This is a handler function for the GET request method on the HomeR
--- resource pattern. All of your resource patterns are defined in
--- config/routes
---
--- The majority of the code you will write in Yesod lives in these handler
--- functions. You can spread them across multiple files if you are so
--- inclined, or create a single monolithic file.
+siteName :: IO Text
+siteName = do
+    x <- decodeFile "config/biosite-settings.yml"
+    let sitename = case x of
+            Just (Object o) -> 
+                case "sitename" `HM.lookup` o of
+                    Just (String sn) -> 
+                            sn
+                    _ -> ""
+            _ -> ""
+    return sitename
+
 getHomeR :: Handler RepHtml
 getHomeR = do
     (formWidget, formEnctype) <- generateFormPost sampleForm
+    handlerName <- liftIO $ siteName
     let submission = Nothing :: Maybe (FileInfo, Text)
-        handlerName = "getHomeR" :: Text
     defaultLayout $ do
         aDomId <- lift newIdent
         setTitle "Welcome To Yesod!"

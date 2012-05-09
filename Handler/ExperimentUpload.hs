@@ -1,6 +1,11 @@
 {-# LANGUAGE TupleSections, OverloadedStrings #-}
 module Handler.ExperimentUpload where
 
+-- Pages used for uploading initial plate-reader data to the server.
+-- There are two parts for such an upload:
+-- 1. Create a new experiment in the experiment table.
+-- 2. Upload the read data, either as the xml output file of the reader (one for each measurement) or as a csv file containing all the measurements combined.
+
 import Import
 import qualified Data.Text.IO as T
 import Data.Maybe (fromMaybe)
