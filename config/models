@@ -1,0 +1,40 @@
+User
+    ident Text
+    password Text Maybe
+    UniqueUser ident
+Email
+    email Text
+    user UserId Maybe
+    verkey Text Maybe
+    UniqueEmail email
+
+Experiments
+    exp_id String
+    description String Maybe
+    ExpId exp_id
+
+Plates
+    exp_id String
+    plate Int
+    description String Maybe
+    owner String Maybe
+    project String Maybe
+    UniqueId exp_id plate
+
+Readings
+    exp_id String
+    plate Int
+    column Int
+    row Int
+    time UTCTime
+    value Double
+
+Labels
+    exp_id String
+    plate Int
+    column Int
+    row Int
+    label String
+    UniqueLabel exp_id plate column row
+
+ -- By default this file is used in Model.hs (which is imported by Foundation.hs)

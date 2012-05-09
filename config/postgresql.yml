@@ -1,0 +1,24 @@
+Default: &defaults
+  user: biosite
+  password: biosite
+  host: localhost
+  port: 5432
+  database: biosite
+  poolsize: 10
+
+Development:
+  <<: *defaults
+
+Testing:
+  database: biosite_test
+  <<: *defaults
+
+Staging:
+  database: biosite_staging
+  poolsize: 100
+  <<: *defaults
+
+Production:
+  database: biosite_production
+  poolsize: 100
+  <<: *defaults

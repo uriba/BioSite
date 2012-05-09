@@ -1,0 +1,7 @@
+This is a temporary patch that should be replaced by an automated form
+$maybe expid <- submission
+  <div .message>
+    new expid is #{expid}.
+<form method=post action=@{CreateExpR}#form enctype=#{formEnctype}>
+  ^{formWidget}
+  <input type="submit" value="create">

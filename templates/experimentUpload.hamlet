@@ -1,0 +1,7 @@
+This is a temporary patch that should be replaced by an automated form
+$maybe expxml <- submission
+  <div .message>
+    Your file's type was <em>#{fileContentType (exfFile expxml)}</em>. it refers to plate: <em>#{show (exfPlate expxml)}</em>
+<form method=post action=@{ExpUploadR}#form enctype=#{formEnctype}>
+  ^{formWidget}
+  <input type="submit" value="Upload">
